@@ -614,6 +614,12 @@ class Rectangle (Shape):
         self.__left += vector.x
         return self
 
+    def set(self, shape):
+        """ Fill this rectangle with the dimensions of the given shape. """
+        self.bottom, self.left = shape.bottom, shape.left
+        self.width, self.height = shape.width, shape.height
+        return self
+
     def copy(self):
         """ Return a copy of this rectangle. """
         from copy import deepcopy
