@@ -61,7 +61,8 @@ def cast_shape_to_rectangle(input):
 
 
 def accept_anything_as_vector(function):
-    def decorator(self, input):
+    def decorator(self, *input):
+        if len(input) == 1: input = input[0]
         vector = cast_anything_to_vector(input)
         return function(self, vector)
     return decorator
