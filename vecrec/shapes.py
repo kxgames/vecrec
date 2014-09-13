@@ -2,7 +2,7 @@ import math
 import random
 import operator
 
-golden_ratio = 1/2 + math.sqrt(5) / 2
+# Utility Functions
 
 def cast_anything_to_vector(input):
     if isinstance(input, Vector):
@@ -123,6 +123,10 @@ def _overload_in_place(f, scalar_ok=False):
 
     return operator
 
+
+# Geometry Functions
+
+golden_ratio = 1/2 + math.sqrt(5) / 2
 
 class Shape:
     """ Provide an interface for custom shape classes to interact with the 
@@ -871,6 +875,14 @@ class Rectangle (Shape):
 
 Rect = Rectangle
 
+
+def get_distance(a, b):
+    a = cast_anything_to_vector(a)
+    b = cast_anything_to_vector(b)
+    return a.get_distance(b)
+
+
+# Exceptions
 
 class NullVectorError (Exception):
     """ Thrown when an operation chokes on a null vector. """
