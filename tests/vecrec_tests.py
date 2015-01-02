@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
-import testing
-import math
+from __future__ import division
+
+import sys, math, finalexam
 from vecrec.shapes import *
 
-@testing.test
+@finalexam.test
 def vector_accessor_methods(helper):
     v = Vector(3, 4)
     w = Vector(3.5, 4.5)
@@ -39,7 +40,7 @@ def vector_accessor_methods(helper):
     v.set_x(7);         assert v.get_x() == 7
     v.set_y(8);         assert v.get_y() == 8
 
-@testing.test
+@finalexam.test
 def vector_overloaded_operators(helper):
     r = Vector(4, 6)
     s = Vector(2, 2)
@@ -71,7 +72,6 @@ def vector_overloaded_operators(helper):
     assert r != u
     assert s != r
     assert t != r
-    print(u != r)
     assert u != r, "u=<{0.x:.2f}, {0.y:.2f}> r={1}".format(u, r)
 
     try: r == 2
@@ -224,7 +224,7 @@ def vector_overloaded_operators(helper):
     except: ZeroDivisionError
     else: raise AssertionError
 
-@testing.test
+@finalexam.test
 def vector_math_methods(helper):
 
     r = Vector(4, 5)
@@ -307,11 +307,10 @@ def vector_math_methods(helper):
     assert r.get_radians_to(s) == math.pi / 2
     assert s.get_radians_to(r) == -math.pi / 2
 
-    try: r.get_radians_to(z)
-    except: ZeroDivisionError
-    else: raise AssertionError
+    with finalexam.expect(NullVectorError):
+        z.get_radians()
     
-@testing.test
+@finalexam.test
 def vector_factory_methods(helper):
     assert Vector.null() == Vector(0, 0)
     assert Vector.from_tuple((3, 4)) == Vector(3, 4)
@@ -360,7 +359,7 @@ def vector_factory_methods(helper):
         raise
 
 
-@testing.test
+@finalexam.test
 def rectangle_accessor_methods(helper):
     r = Rect(2, 4, 6, 8)
     s = Rect(1, 6, 8, 4)
@@ -399,7 +398,7 @@ def rectangle_accessor_methods(helper):
     assert r.get_union(s) == Rect(1, 4, 8, 8)
     assert r.get_intersection(s) == Rect(2, 6, 6, 4)
 
-@testing.test
+@finalexam.test
 def rectangle_mutator_methods(helper):
     r = Rect(2, 2, 4, 4)
     q = Rect(1, 1, 6, 8)
@@ -439,7 +438,7 @@ def rectangle_mutator_methods(helper):
     except VectorCastError: pass
     else: raise AssertionError
 
-@testing.test
+@finalexam.test
 def rectangle_collision_methods(helper):
         box = Rect(5, 5, 10, 10)
 
@@ -509,7 +508,7 @@ def rectangle_collision_methods(helper):
         except RectangleCastError: pass
         else: raise AssertionError
 
-@testing.test
+@finalexam.test
 def rectangle_factory_methods(helper):
 
     v = Vector(5, 6)
@@ -539,7 +538,7 @@ def rectangle_factory_methods(helper):
     assert Rect.from_intersection(a, b) == Rect(4, 4, 1, 1)
 
 
-@testing.test
+@finalexam.test
 def shape_interface(helper):
     class MyShape (Shape): pass
     shape = MyShape()
@@ -560,7 +559,7 @@ def shape_interface(helper):
     except: NotImplementedError
     else: pass
 
-@testing.test
+@finalexam.test
 def shape_pickling(helper):
     import pickle
 
@@ -577,5 +576,5 @@ def shape_pickling(helper):
     assert original_rect == pickled_rect
 
 
-testing.title("Testing the vecrec.shapes module...")
-testing.run()
+finalexam.title("Testing vecrec with python{}.{}".format(*sys.version_info))
+finalexam.run()

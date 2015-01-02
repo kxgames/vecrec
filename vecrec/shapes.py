@@ -1,3 +1,5 @@
+from __future__ import division
+
 import math
 import random
 import operator
@@ -128,7 +130,7 @@ def _overload_in_place(f, scalar_ok=False):
 
 golden_ratio = 1/2 + math.sqrt(5) / 2
 
-class Shape:
+class Shape (object):
     """ Provide an interface for custom shape classes to interact with the 
     rectangle class.  For example, rectangles can be instantiated from shapes
     and can test for collisions against shapes.  The interface is very simple,
@@ -154,7 +156,7 @@ class Shape:
     height = property(get_height)
 
 
-class Vector:
+class Vector (object):
     """ Represents a two-dimensional vector.  In particular, this class
     features a number of factory methods to create vectors from various inputs
     and a number of overloaded operators to facilitate vector arithmetic. """
@@ -267,6 +269,8 @@ class Vector:
         """ Return true is the vector is not degenerate. """
         return self != (0, 0)
 
+    __nonzero__ = __bool__
+
     def __getitem__(self, i):
         """ Return the specified coordinate. """
         return self.tuple[i]
@@ -309,6 +313,10 @@ class Vector:
     __rtruediv__ = _overload_right_side(operator.truediv, scalar_ok=True)
     __itruediv__ = _overload_in_place(operator.truediv, scalar_ok=True)
     
+    __div__ = __truediv__
+    __rdiv__ = __rtruediv__
+    __idiv__ = __itruediv__
+
     __mod__ = _overload_left_side(operator.mod, scalar_ok=True)
     __rmod__ = _overload_right_side(operator.mod, scalar_ok=True)
     __imod__ = _overload_in_place(operator.mod, scalar_ok=True)
