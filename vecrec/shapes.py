@@ -247,6 +247,25 @@ class Vector (object):
 
         return self.x * other.y - self.y * other.x
 
+    def rotate(self, angle):
+        """ Rotate the given vector by an angle. Angle measured in radians counter-clockwise. """
+        x, y = self.tuple
+        self.x = x * math.cos(angle) - y * math.sin(angle)
+        self.y = x * math.sin(angle) + y * math.cos(angle)
+
+    def round(self, digits):
+        """ Round the elements of the given vector to the given number of digits. """
+        # Meant as a way to clean up Vector.rotate()
+        # For example:
+        #   V = Vector(1,0)
+        #   V.rotate(2*pi)
+        #   
+        #   V is now <1.0, -2.4492935982947064e-16>, when it should be 
+        #   <1,0>. V.round(15) will correct the error in this example.
+        
+        x, y = self.tuple
+        self.x = round(x, digits)
+        self.y = round(y, digits)
 
     def __init__(self, x, y):
         """ Construct a vector using the given coordinates. """
@@ -424,6 +443,17 @@ class Vector (object):
         either of the inputs are null vectors, an exception is thrown. """
         return other.degrees - self.degrees
 
+    def get_rotated(self, angle):
+        """ Return a vector rotated by angle from the given vector. Angle measured in radians counter-clockwise. """
+        result = self.copy()
+        result.rotate(angle)
+        return result
+
+    def get_rounded(self, digits):
+        """ Return a vector with the elements rounded to the given number of digits. """
+        result = self.copy()
+        result.round(digits)
+        return result
 
     def set_x(self, x):
         """ Set the x coordinate of this vector. """
