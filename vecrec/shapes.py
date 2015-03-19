@@ -422,9 +422,14 @@ class Vector (object):
 
     def get_radians(self):
         """ Return the angle between this vector and the positive x-axis 
-        measured in radians. """
+        measured in radians. Result will be between -pi and pi. """
         if not self: raise NullVectorError()
         return math.atan2(self.y, self.x)
+
+    def get_positive_radians(self):
+        """ Return the positive angle between this vector and the positive x-axis 
+        measured in radians. """
+        return (2 * math.pi + self.get_radians()) % (2 * math.pi)
 
     def get_degrees(self):
         """ Return the angle between this vector and the positive x-axis 
