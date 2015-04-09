@@ -721,6 +721,12 @@ class Rectangle (Shape):
     def get_height(self):
         return self.__height
 
+    def get_half_width(self):
+        return self.__width / 2
+
+    def get_half_height(self):
+        return self.__height / 2
+
     def get_size(self):
         return self.__width, self.__height
 
@@ -864,6 +870,8 @@ class Rectangle (Shape):
     bottom = property(get_bottom, set_bottom)
     width = property(get_width, set_width)
     height = property(get_height, set_height)
+    half_width = property(get_half_width)
+    half_height = property(get_half_height)
     size = property(get_size, set_size)
     size_as_int = property(get_size_as_int)
 

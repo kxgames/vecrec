@@ -373,6 +373,8 @@ def test_rectangle_accessor_methods():
     assert r.bottom == 4
     assert r.width == 6
     assert r.height == 8
+    assert r.half_width == 3
+    assert r.half_height == 4
     assert r.size == (6, 8)
 
     assert r.top_left == Vector(2, 12)
