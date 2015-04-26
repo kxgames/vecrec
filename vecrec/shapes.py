@@ -932,6 +932,20 @@ def get_distance(a, b):
     b = cast_anything_to_vector(b)
     return a.get_distance(b)
 
+def interpolate(a, b, num_points=3):
+    a = cast_anything_to_vector(a)
+    b = cast_anything_to_vector(b)
+    interpolation = [a]
+    steps = num_points - 1
+    assert steps >= 0
+
+    for step in range(1, steps):
+        v = a.get_interpolated(b, step/steps)
+        interpolation.append(v)
+
+    interpolation.append(b)
+    return interpolation
+
 
 # Exceptions
 

@@ -256,6 +256,8 @@ def test_vector_math_methods():
 
     assert q.get_interpolated(s, 0.5) == Vector(1, 3)
     assert q.get_interpolated(t, 0.5) == Vector(1, 3)
+    assert interpolate(q, q, 3) == [q, q, q]
+    assert interpolate(q, s, 3) == [q, Vector(1, 3), s]
 
     q.interpolate(s, 0.5)
     r.interpolate(t, 0.5)
