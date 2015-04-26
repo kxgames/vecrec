@@ -18,7 +18,7 @@ def test_vector_accessor_methods():
     assert v.tuple == (3, 4)
     assert v.magnitude == 5.0
     assert v.magnitude_squared == 25
-    assert v.normal == Vector(3, 4) / 5.0
+    assert v.unit == Vector(3, 4) / 5.0
     assert v.orthogonal == Vector(-4, 3)
     assert v.orthonormal == Vector(-4, 3) / 5.0
     assert 0.92 < v.radians < 0.93

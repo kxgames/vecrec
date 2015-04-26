@@ -376,7 +376,7 @@ class Vector (object):
         """ Return the Manhattan distance between the two input vectors. """
         return sum(abs(other - self))
 
-    def get_normal(self):
+    def get_unit(self):
         """ Return a unit vector parallel to this one. """
         result = self.copy()
         result.normalize()
@@ -390,7 +390,7 @@ class Vector (object):
     def get_orthonormal(self):
         """ Return a vector that is orthogonal to this one and that has been 
         normalized. """
-        return self.orthogonal.normal
+        return self.orthogonal.unit
 
     def get_scaled(self, magnitude):
         """ Return a unit vector parallel to this one. """
@@ -491,7 +491,7 @@ class Vector (object):
     magnitude = property(get_magnitude, scale)
     magnitude_squared = property(get_magnitude_squared)
 
-    normal = property(get_normal)
+    unit = property(get_unit)
     orthogonal = property(get_orthogonal)
     orthonormal = property(get_orthonormal)
 
