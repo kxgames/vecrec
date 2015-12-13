@@ -21,7 +21,7 @@ setup(
     author_email='kale@thekunderts.net',
     description='2D vector and rectangle classes',
     long_description=readme,
-    url='https://github.com/kalekundert/vecrec',
+    url='https://github.com/kxgames/vecrec',
     packages=[
         'vecrec',
     ],
@@ -32,12 +32,19 @@ setup(
     zip_safe=False,
     keywords=[
         'vecrec',
+        '2D',
+        'vector',
+        'rectangle',
+        'library',
     ],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.0',
         'Programming Language :: Python :: 3.1',
