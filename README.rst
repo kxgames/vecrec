@@ -2,10 +2,13 @@
 ``vecrec`` --- 2D vector and rectangle classes
 **********************************************
 
+This package provides 2D vector and rectangle classes.  These classes were 
+written to be used in games, so they have some methods that conveniently tie 
+into ``pyglet`` and ``pygame``, but for the most part they are quite general 
+and could be used for almost anything.
+
 .. image:: https://travis-ci.org/kxgames/vecrec.svg?branch=master
     :target: https://travis-ci.org/kxgames/vecrec
-
-This package provides 2D vector and rectangle classes.
 
 Installation
 ============
