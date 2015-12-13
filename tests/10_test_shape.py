@@ -9,8 +9,6 @@ def test_shape_interface():
     class MyShape (Shape): pass
     shape = MyShape()
 
-    assert False
-
     with pytest.raises(NotImplementedError):
         shape.bottom
     with pytest.raises(NotImplementedError):
