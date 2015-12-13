@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 def circle_touching_line(center, radius, start, end):
     """ Return true if the given circle intersects the given segment.  Note 
     that this checks for intersection with a line segment, and not an actual 
