@@ -276,11 +276,11 @@ class Vector (object):
 
     def __repr__(self):
         """ Return a string representation of this vector. """
-        return "Vector(%f, %f)" % self.get_tuple()
+        return "Vector(%f, %f)" % self.tuple
 
     def __str__(self):
         """ Return a string representation of this vector. """
-        return "<%.2f, %.2f>" % self.get_tuple()
+        return "<%.2f, %.2f>" % self.tuple
 
     def __iter__(self):
         """ Iterate over this vectors coordinates. """
@@ -510,10 +510,10 @@ class Rectangle (Shape):
         self.__height = height
 
     def __repr__(self):
-        return "Rectangle(%d, %d, %d, %d)" % self.tuple
+        return "Rectangle(%f, %f, %f, %f)" % self.tuple
 
     def __str__(self):
-        return '<Rect bottom={} left={} width={} height={}>'.format(
+        return '<Rect bottom={0} left={1} width={2} height={3}>'.format(
                 self.bottom, self.left, self.width, self.height)
 
     def __eq__(self, other):
