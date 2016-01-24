@@ -36,6 +36,8 @@ def test_rectangle_accessor_methods():
     assert r.bottom_left == Vector(2, 4)
     assert r.bottom_center == Vector(5, 4)
     assert r.bottom_right == Vector(8, 4)
+    assert r.vertices == (
+            r.top_left, r.top_right, r.bottom_right, r.bottom_left)
 
     assert r.dimensions == ((2, 4), (6, 8))
     assert r.tuple == (2, 4, 6, 8)

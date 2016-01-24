@@ -176,12 +176,12 @@ class Vector (object):
 
     @staticmethod
     def from_radians(angle):
-        """ Create a vector that makes the given angle with the x-axis. """
+        """ Create a unit vector that makes the given angle with the x-axis. """
         return Vector(math.cos(angle), math.sin(angle))
 
     @staticmethod
     def from_degrees(angle):
-        """ Create a vector that makes the given angle with the x-axis. """
+        """ Create a unit vector that makes the given angle with the x-axis. """
         return Vector.from_radians(angle * math.pi / 180)
 
     @staticmethod
@@ -355,6 +355,10 @@ class Vector (object):
         """ Get the y coordinate of this vector. """
         return self.y
 
+    def get_xy(self):
+        """ Return the vector as a tuple. """
+        return self.x, self.y
+
     def get_tuple(self):
         """ Return the vector as a tuple. """
         return self.x, self.y
@@ -470,6 +474,10 @@ class Vector (object):
         """ Set the y coordinate of this vector. """
         self.y = y
 
+    def set_xy(self, xy):
+        """ Set the x and y coordinates of this vector from a tuple. """
+        self.x, self.y = xy
+
     def set_radians(self, angle):
         """ Set the angle that this vector makes with the x-axis. """
         self.x, self.y = math.cos(angle), math.sin(angle)
@@ -488,6 +496,7 @@ class Vector (object):
     perp = perp_product
 
     # Properties (fold)
+    xy = property(get_xy, set_xy)
     tuple = property(get_tuple, set_tuple)
 
     magnitude = property(get_magnitude, scale)
@@ -799,6 +808,9 @@ class Rectangle (Shape):
     def get_bottom_right(self):
         return Vector(self.right, self.bottom)
 
+    def get_vertices(self):
+        return self.top_left, self.top_right, self.bottom_right, self.bottom_left
+
 
     def get_dimensions(self):
         return (self.__left, self.__bottom), (self.__width, self.__height)
@@ -897,6 +909,12 @@ class Rectangle (Shape):
         self.bottom = point[1]
         self.right = point[0]
 
+    def set_vertices(self, vertices):
+        self.top_left = vertices[0]
+        self.top_right = vertices[1]
+        self.bottom_right = vertices[2]
+        self.bottom_left = vertices[3]
+
 
     # Properties (fold)
     left = property(get_left, set_left)
@@ -921,6 +939,7 @@ class Rectangle (Shape):
     bottom_left = property(get_bottom_left, set_bottom_left)
     bottom_center = property(get_bottom_center, set_bottom_center)
     bottom_right = property(get_bottom_right, set_bottom_right)
+    vertices = property(get_vertices, set_vertices)
 
     dimensions = property(get_dimensions)
     tuple = property(get_tuple)
