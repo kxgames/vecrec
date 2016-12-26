@@ -7,8 +7,17 @@ written to be used in games, so they have some methods that conveniently tie
 into ``pyglet`` and ``pygame``, but for the most part they are quite general 
 and could be used for almost anything.
 
-.. image:: https://travis-ci.org/kxgames/vecrec.svg?branch=master
-    :target: https://travis-ci.org/kxgames/vecrec
+.. image:: https://img.shields.io/pypi/v/vecrec.svg
+   :target: https://pypi.python.org/pypi/vecrec
+.. image:: https://img.shields.io/pypi/pyversions/vecrec.svg
+   :target: https://pypi.python.org/pypi/vecrec
+.. image:: https://img.shields.io/travis/kxgames/vecrec.svg
+   :target: https://travis-ci.org/kxgames/vecrec
+.. image: https://img.shields.io/coveralls/kxgames/vecrec.svg
+   :target: https://coveralls.io/github/kxgames/vecrec?branch=master
+.. image:: https://readthedocs.org/projects/vecrec/badge/?version=latest
+   :target: http://vecrec.readthedocs.io/en/latest/
+
 
 Installation
 ============
