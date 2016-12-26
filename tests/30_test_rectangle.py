@@ -160,6 +160,7 @@ def test_rectangle_factory_methods():
     v = Vector(5, 6)
     t = 7, 8
 
+    assert Rect.null() == Rect(0, 0, 0, 0)
     assert Rect.from_size(1, 2) == Rect(0, 0, 1, 2)
     assert Rect.from_width(3, ratio=2) == Rect(0, 0, 3, 6)
     assert Rect.from_height(4, ratio=2) == Rect(0, 0, 8, 4)

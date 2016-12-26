@@ -15,6 +15,7 @@ def test_vector_accessor_methods():
 
     assert v.x == 3
     assert v.y == 4
+    assert v.xy == (3, 4)
     assert v.tuple == (3, 4)
     assert v.magnitude == 5.0
     assert v.magnitude_squared == 25
@@ -32,6 +33,7 @@ def test_vector_accessor_methods():
 
     v.x = 1;            assert v.x == 1
     v.y = 2;            assert v.y == 2
+    v.xy = 5,6;         assert v.x == 5 and v.y == 6
     v.tuple = 3, 4;     assert v.x == 3 and v.y == 4
     v.magnitude = 1
     v.radians = 0;      assert 0.99 < v.x < 1.01 and -0.01 < v.y < 0.01
