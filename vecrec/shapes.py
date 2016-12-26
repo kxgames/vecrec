@@ -558,6 +558,12 @@ class Rectangle (Shape):
 
 
     @staticmethod
+    def null():
+        """ Return a rectangle with everything set to zero.  It is located at 
+        the origin and has no area. """
+        return Rectangle(0, 0, 0, 0)
+
+    @staticmethod
     def from_size(width, height):
         return Rectangle(0, 0, width, height)
 
