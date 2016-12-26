@@ -13,7 +13,7 @@ and could be used for almost anything.
    :target: https://pypi.python.org/pypi/vecrec
 .. image:: https://img.shields.io/travis/kxgames/vecrec.svg
    :target: https://travis-ci.org/kxgames/vecrec
-.. image: https://img.shields.io/coveralls/kxgames/vecrec.svg
+.. image:: https://img.shields.io/coveralls/kxgames/vecrec.svg
    :target: https://coveralls.io/github/kxgames/vecrec?branch=master
 .. image:: https://readthedocs.org/projects/vecrec/badge/?version=latest
    :target: http://vecrec.readthedocs.io/en/latest/
