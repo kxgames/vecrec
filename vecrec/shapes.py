@@ -519,10 +519,10 @@ class Vector (object):
 class Rectangle (Shape):
 
     def __init__(self, left, bottom, width, height):
-        self.__left = left
-        self.__bottom = bottom
-        self.__width = width
-        self.__height = height
+        self._left = left
+        self._bottom = bottom
+        self._width = width
+        self._height = height
 
     def __repr__(self):
         return "Rectangle(%f, %f, %f, %f)" % self.tuple
@@ -670,10 +670,10 @@ class Rectangle (Shape):
 
     def grow(self, padding):
         """ Grow this rectangle by the given padding on all sides. """
-        self.__bottom -= padding
-        self.__left -= padding
-        self.__width += 2 * padding
-        self.__height += 2 * padding
+        self._bottom -= padding
+        self._left -= padding
+        self._width += 2 * padding
+        self._height += 2 * padding
         return self
 
     def shrink(self, padding):
@@ -684,8 +684,8 @@ class Rectangle (Shape):
     @accept_anything_as_vector
     def displace(self, vector):
         """ Displace this rectangle by the given vector. """
-        self.__bottom += vector.y
-        self.__left += vector.x
+        self._bottom += vector.y
+        self._left += vector.x
         return self
 
     def set(self, shape):
@@ -759,41 +759,41 @@ class Rectangle (Shape):
 
 
     def get_left(self):
-        return self.__left
+        return self._left
 
     def get_center_x(self):
-        return self.__left + self.__width / 2
+        return self._left + self._width / 2
 
     def get_right(self):
-        return self.__left + self.__width
+        return self._left + self._width
 
     def get_top(self):
-        return self.__bottom + self.__height
+        return self._bottom + self._height
 
     def get_center_y(self):
-        return self.__bottom + self.__height / 2
+        return self._bottom + self._height / 2
 
     def get_bottom(self):
-        return self.__bottom
+        return self._bottom
 
     def get_width(self):
-        return self.__width
+        return self._width
 
     def get_height(self):
-        return self.__height
+        return self._height
 
     def get_half_width(self):
-        return self.__width / 2
+        return self._width / 2
 
     def get_half_height(self):
-        return self.__height / 2
+        return self._height / 2
 
     def get_size(self):
-        return self.__width, self.__height
+        return self._width, self._height
 
     def get_size_as_int(self):
         from math import ceil
-        return int(ceil(self.__width)), int(ceil(self.__height))
+        return int(ceil(self._width)), int(ceil(self._height))
 
 
     def get_top_left(self):
@@ -828,10 +828,10 @@ class Rectangle (Shape):
 
 
     def get_dimensions(self):
-        return (self.__left, self.__bottom), (self.__width, self.__height)
+        return (self._left, self._bottom), (self._width, self._height)
 
     def get_tuple(self):
-        return self.__left, self.__bottom, self.__width, self.__height
+        return self._left, self._bottom, self._width, self._height
 
     def get_union(self, *rectangles):
         return Rectangle.from_union(self, *rectangles)
@@ -851,32 +851,32 @@ class Rectangle (Shape):
 
 
     def set_left(self, x):
-        self.__left = x
+        self._left = x
 
     def set_center_x(self, x):
-        self.__left = x - self.__width / 2
+        self._left = x - self._width / 2
 
     def set_right(self, x):
-        self.__left = x - self.__width
+        self._left = x - self._width
 
     def set_top(self, y):
-        self.__bottom = y - self.__height
+        self._bottom = y - self._height
 
     def set_center_y(self, y):
-        self.__bottom = y - self.__height / 2
+        self._bottom = y - self._height / 2
 
     def set_bottom(self, y):
-        self.__bottom = y
+        self._bottom = y
 
     def set_width(self, width):
-        self.__width = width
+        self._width = width
 
     def set_height(self, height):
-        self.__height = height
+        self._height = height
 
     def set_size(self, width, height):
-        self.__width = width
-        self.__height = height
+        self._width = width
+        self._height = height
 
 
     @accept_anything_as_vector
