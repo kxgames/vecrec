@@ -296,13 +296,19 @@ class Vector (object):
         """ Return the specified coordinate. """
         return self.tuple[i]
 
-    @accept_anything_as_vector
     def __eq__(self, other):
-        return self.x == other.x and self.y == other.y
+        """Return true if the given object has the same coordinates as this 
+        vector."""
+        try:
+            other = cast_anything_to_vector(other)
+            return self.x == other.x and self.y == other.y
+        except VectorCastError:
+            return False
 
-    @accept_anything_as_vector
     def __ne__(self, other):
-        return self.x != other.x or self.y != other.y
+        """Return true if the given object has different coordinates than this 
+        vector."""
+        return not self.__eq__(other)
 
     def __neg__(self):
         """ Return a copy of this vector with the signs flipped. """
@@ -526,10 +532,13 @@ class Rectangle (Shape):
                 self.bottom, self.left, self.width, self.height)
 
     def __eq__(self, other):
-        return ( self.__bottom == other.__bottom and
-                 self.__left == other.__left and
-                 self.__width == other.__width and
-                 self.__height == other.__height )
+        try:
+            return (self.bottom == other.bottom and
+                    self.left == other.left and
+                    self.width == other.width and
+                    self.height == other.height)
+        except AttributeError:
+            return False
 
     @accept_anything_as_vector
     def __add__(self, vector):

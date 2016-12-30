@@ -72,15 +72,8 @@ def test_vector_overloaded_operators():
     assert r != u
     assert s != r
     assert t != r
-    assert u != r, "u=<{0.x:.2f}, {0.y:.2f}> r={1}".format(u, r)
-
-    try: r == 2
-    except VectorCastError: pass
-    else: raise AssertionError
-
-    try: r != 2
-    except VectorCastError: pass
-    else: raise AssertionError
+    assert u != r
+    assert r != None
 
     # Addition operator
     

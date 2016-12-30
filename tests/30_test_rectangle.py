@@ -14,6 +14,7 @@ def test_rectangle_accessor_methods():
 
     assert r == r
     assert r == r.copy()
+    assert r != None
 
     assert r.left == 2
     assert r.center_x == 5
