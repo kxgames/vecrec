@@ -12,3 +12,6 @@ from .shapes import accept_shape_as_rectangle
 from .shapes import golden_ratio
 from .shapes import get_distance
 from .shapes import interpolate
+from .shapes import NullVectorError
+from .shapes import VectorCastError
+from .shapes import RectangleCastError

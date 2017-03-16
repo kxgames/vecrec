@@ -201,6 +201,10 @@ class Vector (object):
         y = box.bottom + box.height * random.uniform(0, 1)
         return Vector(x, y)
 
+    @staticmethod
+    def from_anything(input):
+        return cast_anything_to_vector(input)
+
 
     def copy(self):
         """ Return a copy of this vector. """
@@ -255,7 +259,7 @@ class Vector (object):
         self.x = x * math.cos(angle) - y * math.sin(angle)
         self.y = x * math.sin(angle) + y * math.cos(angle)
 
-    def round(self, digits):
+    def round(self, digits=0):
         """ Round the elements of the given vector to the given number of digits. """
         # Meant as a way to clean up Vector.rotate()
         # For example:
@@ -265,9 +269,9 @@ class Vector (object):
         #   V is now <1.0, -2.4492935982947064e-16>, when it should be 
         #   <1,0>. V.round(15) will correct the error in this example.
         
-        x, y = self.tuple
-        self.x = round(x, digits)
-        self.y = round(y, digits)
+        self.x = round(self.x, digits)
+        self.y = round(self.y, digits)
+
 
     def __init__(self, x, y):
         """ Construct a vector using the given coordinates. """
@@ -284,7 +288,8 @@ class Vector (object):
 
     def __iter__(self):
         """ Iterate over this vectors coordinates. """
-        yield self.x; yield self.y
+        yield self.x
+        yield self.y
 
     def __bool__(self):
         """ Return true is the vector is not degenerate. """
@@ -484,6 +489,10 @@ class Vector (object):
         """ Set the x and y coordinates of this vector from a tuple. """
         self.x, self.y = xy
 
+    def set_tuple(self, coordinates):
+        """ Set the x and y coordinates of this vector. """
+        self.x, self.y = coordinates
+    
     def set_radians(self, angle):
         """ Set the angle that this vector makes with the x-axis. """
         self.x, self.y = math.cos(angle), math.sin(angle)
@@ -492,10 +501,6 @@ class Vector (object):
         """ Set the angle that this vector makes with the x-axis. """
         self.set_radians(angle * math.pi / 180)
 
-    def set_tuple(self, coordinates):
-        """ Set the x and y coordinates of this vector. """
-        self.x, self.y = coordinates
-    
 
     # Aliases (fold)
     dot = dot_product
@@ -668,17 +673,30 @@ class Rectangle (Shape):
         return Rectangle.from_sides(left, top, right, bottom)
 
 
-    def grow(self, padding):
+    def grow(self, *padding):
         """ Grow this rectangle by the given padding on all sides. """
-        self._bottom -= padding
-        self._left -= padding
-        self._width += 2 * padding
-        self._height += 2 * padding
+        try:
+            lpad, rpad, tpad, bpad = padding
+        except ValueError:
+            lpad = rpad = tpad = bpad = padding[0]
+
+        self._bottom -= bpad
+        self._left -= lpad
+        self._width += lpad + rpad
+        self._height += tpad + bpad
         return self
 
-    def shrink(self, padding):
+    def shrink(self, *padding):
         """ Shrink this rectangle by the given padding on all sides. """
-        self.grow(-padding)
+        try:
+            lpad, rpad, tpad, bpad = padding
+        except ValueError:
+            lpad = rpad = tpad = bpad = padding[0]
+
+        self._bottom += bpad
+        self._left += lpad
+        self._width -= lpad + rpad
+        self._height -= tpad + bpad
         return self
 
     @accept_anything_as_vector
@@ -687,6 +705,13 @@ class Rectangle (Shape):
         self._bottom += vector.y
         self._left += vector.x
         return self
+
+    def round(self, digits=0):
+        """ Round the dimensions of the given rectangle to the given number of digits. """
+        self._left = round(self._left, digits)
+        self._bottom = round(self._bottom, digits)
+        self._width = round(self._width, digits)
+        self._height = round(self._height, digits)
 
     def set(self, shape):
         """ Fill this rectangle with the dimensions of the given shape. """
@@ -776,6 +801,9 @@ class Rectangle (Shape):
     def get_bottom(self):
         return self._bottom
 
+    def get_area(self):
+        return self._width * self._height
+
     def get_width(self):
         return self._width
 
@@ -789,11 +817,11 @@ class Rectangle (Shape):
         return self._height / 2
 
     def get_size(self):
-        return self._width, self._height
+        return Vector(self._width, self._height)
 
     def get_size_as_int(self):
         from math import ceil
-        return int(ceil(self._width)), int(ceil(self._height))
+        return Vector(int(ceil(self._width)), int(ceil(self._height)))
 
 
     def get_top_left(self):
@@ -847,6 +875,11 @@ class Rectangle (Shape):
     def get_shrunk(self, padding):
         result = self.copy()
         result.shrink(padding)
+        return result
+
+    def get_rounded(self, digits=0):
+        result = self.copy()
+        result.round(digits)
         return result
 
 
@@ -938,6 +971,7 @@ class Rectangle (Shape):
     top = property(get_top, set_top)
     center_y = property(get_center_y, set_center_y)
     bottom = property(get_bottom, set_bottom)
+    area = property(get_area)
     width = property(get_width, set_width)
     height = property(get_height, set_height)
     half_width = property(get_half_width)
