@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-__version__ = '0.2.1'
+__version__ = '0.3.0'
 
 from .shapes import Shape, Vector, Rect
 from .shapes import cast_anything_to_vector
