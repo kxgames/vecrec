@@ -93,7 +93,7 @@ def _overload_left_side(f, scalar_ok=False):
         # Zero is treated as a special case, because the built-in sum() 
         # function expects to be able to add zero to things.
         
-        if (other is 0) or (scalar_ok):
+        if (other == 0) or (scalar_ok):
             return Vector(f(self.x, other), f(self.y, other))
         else:
             raise VectorCastError(other)
@@ -106,7 +106,7 @@ def _overload_right_side(f, scalar_ok=False):
         except: pass
         else: return Vector(f(x, self.x), f(y, self.y))
 
-        if (other is 0) or (scalar_ok):
+        if (other == 0) or (scalar_ok):
             return Vector(f(other, self.x), f(other, self.y))
         else:
             raise VectorCastError(other)
@@ -119,7 +119,7 @@ def _overload_in_place(f, scalar_ok=False):
         except: pass
         else: self.x, self.y = f(self.x, x), f(self.y, y); return self
 
-        if (other is 0) or (scalar_ok):
+        if (other == 0) or (scalar_ok):
             self.x, self.y = f(self.x, other), f(self.y, other)
             return self
         else:
@@ -130,7 +130,7 @@ def _overload_in_place(f, scalar_ok=False):
 
 # Geometry Functions
 
-golden_ratio = 1/2 + math.sqrt(5) / 2
+phi = golden_ratio = 1/2 + math.sqrt(5) / 2
 
 class Shape (object):
     """ Provide an interface for custom shape classes to interact with the 
@@ -389,6 +389,11 @@ class Vector (object):
         return (other - self).magnitude
 
     @accept_anything_as_vector
+    def get_distance_squared(self, other):
+        """ Return the squared Euclidean distance between the two input vectors. """
+        return (other - self).magnitude_squared
+
+    @accept_anything_as_vector
     def get_manhattan(self, other):
         """ Return the Manhattan distance between the two input vectors. """
         return sum(abs(other - self))
@@ -582,11 +587,11 @@ class Rectangle (Shape):
         return Rectangle(0, 0, width, height)
 
     @staticmethod
-    def from_width(width, ratio=1/golden_ratio):
+    def from_width(width, ratio=1/phi):
         return Rectangle.from_size(width, ratio * width)
 
     @staticmethod
-    def from_height(height, ratio=golden_ratio):
+    def from_height(height, ratio=phi):
         return Rectangle.from_size(ratio * height, height)
 
     @staticmethod
@@ -999,8 +1004,11 @@ Rect = Rectangle
 
 def get_distance(a, b):
     a = cast_anything_to_vector(a)
-    b = cast_anything_to_vector(b)
     return a.get_distance(b)
+
+def get_distance_squared(a, b):
+    a = cast_anything_to_vector(a)
+    return a.get_distance_squared(b)
 
 def interpolate(a, b, num_points=3):
     a = cast_anything_to_vector(a)
@@ -1027,7 +1035,7 @@ class VectorCastError (Exception):
     """ Thrown when an inappropriate object is used as a vector. """
 
     def __init__(self, object):
-        Exception.__init__(self, "Could not cast %s to vector." % type(object))
+        Exception.__init__(self, "Could not cast %s to vector." % repr(object))
 
 
 class RectangleCastError (Exception):
