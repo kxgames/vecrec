@@ -101,9 +101,9 @@ def accept_anything_as_vector(function):
         ...
         >>> x = MyClass()
         >>> x.f(1, 2)
-        Vector(1.00000, 2.000000)
+        Vector(1.000000, 2.000000)
         >>> x.f((1, 2))
-        Vector(1.00000, 2.000000)
+        Vector(1.000000, 2.000000)
 
     """
     @wraps(function)
@@ -121,7 +121,6 @@ def accept_anything_as_rectangle(function):
 
         >>> import vecrec
         >>> from collections import namedtuple
-        >>>
         >>> class MyClass:
         ...     @vecrec.accept_anything_as_rectangle
         ...     def f(self, r):
@@ -129,7 +128,6 @@ def accept_anything_as_rectangle(function):
         ... 
         >>> ShapeLike = namedtuple('_', 'bottom left width height')
         >>> shape = ShapeLike(1, 2, 3, 4)
-        >>>
         >>> x = MyClass()
         >>> x.f(shape)
         Rect(2.000000, 1.000000, 3.000000, 4.000000)
