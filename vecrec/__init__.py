@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+"""2D vector and rectangle classes."""
+
 __version__ = '0.3.0'
 
 from .shapes import Shape, Vector, Rect
