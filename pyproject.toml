@@ -1,0 +1,52 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "vecrec"
+author = "Kale Kundert"
+author-email = "kale@thekunderts.net"
+home-page = 'https://github.com/kxgames/vecrec'
+description-file = 'README.rst'
+requires = [
+  'autoprop',
+]
+keywords=[
+  'vecrec',
+  '2D',
+  'vector',
+  'rectangle',
+  'library',
+]
+classifiers = [
+  'Development Status :: 2 - Pre-Alpha',
+  'Intended Audience :: Developers',
+  'License :: OSI Approved :: MIT License',
+  'Natural Language :: English',
+  'Programming Language :: Python :: 2',
+  'Programming Language :: Python :: 3',
+  'Topic :: Software Development :: Libraries',
+]
+
+[tool.flit.metadata.requires-extra]
+tests = [
+  'pytest',
+  'pytest-cov',
+  'coveralls',
+]
+docs = [
+  'sphinx',
+  'sphinx_rtd_theme',
+  'autoclasstoc',
+]
+
+[tool.flit.metadata.urls]
+'Documentation' = 'https://vecrec.readthedocs.io/en/latest/'
+'Version Control' = 'https://github.com/kxgames/vecrec'
+'Bug Tracker' = 'https://github.com/kxgames/vecrec/issues'
+'Continuous Integration' = 'https://travis-ci.org/kxgames/vecrec'
+'Test Coverage' = 'https://coveralls.io/github/kxgames/vecrec'
+
+[tool.semantic_release]
+version_variable = 'vecrec/__init__.py:__version__'
+

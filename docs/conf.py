@@ -23,6 +23,7 @@ extensions = [
         'sphinx.ext.autosummary',
         'sphinx.ext.viewcode',
         'sphinx.ext.intersphinx',
+        'sphinx_rtd_theme',
 ]
 intersphinx_mapping = { #
         'pyglet': ('http://pyglet.readthedocs.io/en/latest', None),
@@ -32,11 +33,6 @@ autosummary_generate = True
 autodoc_default_options = {
         'exclude-members': '__dict__,__weakref__,__module__',
 }
-
-## Theme
-
-from sphinx_rtd_theme import get_html_theme_path
 html_theme = "sphinx_rtd_theme"
-html_theme_path = [get_html_theme_path()]
 #html_static_path = ['static']
 
