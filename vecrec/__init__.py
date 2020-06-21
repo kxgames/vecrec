@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+"""2D vector and rectangle classes."""
+
 __version__ = '0.3.0'
 
 from .shapes import Shape, Vector, Rect
@@ -14,4 +16,4 @@ from .shapes import get_distance
 from .shapes import interpolate
 from .shapes import NullVectorError
 from .shapes import VectorCastError
-from .shapes import RectangleCastError
+from .shapes import RectCastError

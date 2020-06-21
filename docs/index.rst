@@ -1,22 +1,21 @@
-.. VecRec documentation master file, created by
-   sphinx-quickstart on Sat Dec 12 21:08:36 2015.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. include:: ../README.rst
 
-Welcome to VecRec's documentation!
-===========================================================
+.. autosummary::
+   :toctree: api
+   :recursive:
 
-Contents:
-
-.. toctree::
-   :maxdepth: 2
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+   vecrec.Shape
+   vecrec.Vector
+   vecrec.Rect
+   vecrec.cast_anything_to_vector
+   vecrec.cast_anything_to_rectangle
+   vecrec.cast_shape_to_rectangle
+   vecrec.accept_anything_as_vector
+   vecrec.accept_anything_as_rectangle
+   vecrec.accept_shape_as_rectangle
+   vecrec.golden_ratio
+   vecrec.get_distance
+   vecrec.interpolate
+   vecrec.NullVectorError
+   vecrec.VectorCastError
+   vecrec.RectCastError

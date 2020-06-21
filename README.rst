@@ -1,6 +1,6 @@
-**********************************************
-``vecrec`` --- 2D vector and rectangle classes
-**********************************************
+********************************************
+``vecrec`` — 2D vector and rectangle classes
+********************************************
 
 This package provides 2D vector and rectangle classes.  These classes were 
 written to be used in games, so they have some methods that conveniently tie 
@@ -28,9 +28,8 @@ PyPI::
 
 Basic Usage
 ===========
-In lieu of complete API documentation, here are a few examples showing how to 
-construct and use use the ``Vector`` and ``Rect`` classes provided by this 
-package::
+Here are a few examples showing how to construct and use the `Vector` and 
+`Rect` classes provided by this package::
 
    >>> from vecrec import Vector, Rect
    >>> a = Vector(1, 2)

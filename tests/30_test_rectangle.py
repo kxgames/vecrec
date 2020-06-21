@@ -141,19 +141,19 @@ def test_rectangle_collision_methods():
             assert minibox.outside(box) == (not minibox_touching[y][x])
 
         try: box.inside(0)
-        except RectangleCastError: pass
+        except RectCastError: pass
         else: raise AssertionError
 
         try: box.outside(0)
-        except RectangleCastError: pass
+        except RectCastError: pass
         else: raise AssertionError
 
         try: box.touching(0)
-        except RectangleCastError: pass
+        except RectCastError: pass
         else: raise AssertionError
 
         try: box.contains(0)
-        except RectangleCastError: pass
+        except RectCastError: pass
         else: raise AssertionError
 
 def test_rectangle_factory_methods():
