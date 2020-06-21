@@ -14,4 +14,4 @@ from .shapes import get_distance
 from .shapes import interpolate
 from .shapes import NullVectorError
 from .shapes import VectorCastError
-from .shapes import RectangleCastError
+from .shapes import RectCastError
