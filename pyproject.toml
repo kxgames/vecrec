@@ -11,13 +11,7 @@ description-file = 'README.rst'
 requires = [
   'autoprop',
 ]
-keywords=[
-  'vecrec',
-  '2D',
-  'vector',
-  'rectangle',
-  'library',
-]
+keywords='vecrec,2D,vector,rectangle,library'
 classifiers = [
   'Development Status :: 2 - Pre-Alpha',
   'Intended Audience :: Developers',
