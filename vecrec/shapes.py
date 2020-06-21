@@ -107,10 +107,10 @@ def accept_anything_as_vector(function):
 
     """
     @wraps(function)
-    def decorator(*input):
+    def decorator(self, *input):
         if len(input) == 1: input = input[0]
         vector = cast_anything_to_vector(input)
-        return function(vector)
+        return function(self, vector)
     return decorator
 
 def accept_anything_as_rectangle(function):
