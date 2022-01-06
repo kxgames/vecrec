@@ -812,12 +812,13 @@ class Rect(Shape):
         self._left += vector.x
         return self
 
-    def round(self, digits=0):
-        """Round the dimensions of the given rectangle to the given number of digits."""
-        self._left = round(self._left, digits)
-        self._bottom = round(self._bottom, digits)
-        self._width = round(self._width, digits)
-        self._height = round(self._height, digits)
+    def round(self, *args):
+        """Round the dimensions of the given rectangle to the given number of 
+        digits."""
+        self._left = round(self._left, *args)
+        self._bottom = round(self._bottom, *args)
+        self._width = round(self._width, *args)
+        self._height = round(self._height, *args)
 
     def set(self, shape):
         """Fill this rectangle with the dimensions of the given shape."""
@@ -1063,6 +1064,18 @@ class Rect(Shape):
     def get_tuple(self):
         return self._left, self._bottom, self._width, self._height
 
+    # Have to define properties manually, because `accept_anything_as_vector` 
+    # causes `autoprop` to ignore the setters.
+    top_left = property(get_top_left, set_top_left)
+    top_center = property(get_top_center, set_top_center)
+    top_right = property(get_top_right, set_top_right)
+    center_left = property(get_center_left, set_center_left)
+    center = property(get_center, set_center)
+    center_right = property(get_center_right, set_center_right)
+    bottom_left = property(get_bottom_left, set_bottom_left)
+    bottom_center = property(get_bottom_center, set_bottom_center)
+    bottom_right = property(get_bottom_right, set_bottom_right)
+
     # Rect properties
 
     def get_union(self, *rectangles):
@@ -1081,9 +1094,9 @@ class Rect(Shape):
         result.shrink(padding)
         return result
 
-    def get_rounded(self, digits=0):
+    def get_rounded(self, *args):
         result = self.copy()
-        result.round(digits)
+        result.round(*args)
         return result
 
 

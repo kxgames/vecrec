@@ -87,6 +87,34 @@ def test_rectangle_mutator_methods():
     except VectorCastError: pass
     else: raise AssertionError
 
+@pytest.mark.parametrize(
+        'rect, digits, expected, type', [
+            (Rect(2, 2, 4, 4), [], Rect(2, 2, 4, 4), int),
+            (Rect(2.0, 2.0, 4.0, 4.0), [1], Rect(2, 2, 4, 4), float),
+            (Rect(1.4, 1.4, 4, 4), [], Rect(1, 1, 4, 4), int),
+            (Rect(1.6, 1.6, 4, 4), [], Rect(2, 2, 4, 4), int),
+        ],
+)
+def test_rectangle_round(rect, digits, expected, type):
+    copy = rect.get_rounded(*digits)
+    rect.round(*digits)
+
+    assert rect.left == copy.left == expected.left
+    assert rect.bottom == copy.bottom == expected.bottom
+    assert rect.width == copy.width == expected.width
+    assert rect.height == copy.height == expected.height
+
+    assert isinstance(copy.left, type)
+    assert isinstance(copy.bottom, type)
+    assert isinstance(copy.width, type)
+    assert isinstance(copy.height, type)
+
+    assert isinstance(rect.left, type)
+    assert isinstance(rect.bottom, type)
+    assert isinstance(rect.width, type)
+    assert isinstance(rect.height, type)
+
+
 def test_rectangle_collision_methods():
         box = Rect(5, 5, 10, 10)
 
@@ -157,7 +185,6 @@ def test_rectangle_collision_methods():
         else: raise AssertionError
 
 def test_rectangle_factory_methods():
-
     v = Vector(5, 6)
     t = 7, 8
 
