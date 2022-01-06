@@ -2,7 +2,7 @@
 
 """2D vector and rectangle classes."""
 
-__version__ = '0.3.0'
+__version__ = '0.3.1'
 
 from .shapes import Shape, Vector, Rect
 from .shapes import cast_anything_to_vector
